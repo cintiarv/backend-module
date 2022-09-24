@@ -1,0 +1,13 @@
+/* a partir del json. Convertir json a objeto 
+1-. función que permita leer el archivo e imprimir en consola el arreglo de koders
+2-. función que permita agregar un koder al arreglo de koders y guardar el archivo con el cambio realizado
+3-. función que permita eliminar a un koder por su id y guardar el archivo con el cambio realizado
+4-. función que permita editar a un koder por su id y guardar el archivo con el cambio realizado
+5-. función que permita obtener a los koders que sean mayores a 25 años
+
+Requerimientos -> callbacks, file system, 
+JSON.parse() -> convierte de cadena a un objeto js 
+JSON.stringify() -> convierte de un objeto a string
+
+1ero convertir a objeto para poder manipular la data 
+*/

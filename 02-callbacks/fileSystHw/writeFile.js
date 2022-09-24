@@ -7,3 +7,5 @@ fs.writeFile('./texto.txt', 'Hola mundo', function(err){ //creare un archivo txt
         console.log('archivo creado')
     }
     });
+
+    //crea un archivo
