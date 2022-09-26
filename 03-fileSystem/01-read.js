@@ -1,3 +1,4 @@
+//1-. función que permita leer el archivo e imprimir en consola el arreglo de koders
 
 const fs = require('fs');
 
