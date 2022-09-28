@@ -55,8 +55,7 @@ function takeClass(koderTakingClass){
             ?reject(`${koderTakingClass.name} no puede tomar clase`)
             :resolve(koderTakingClass)
         },2000)
-    })
-    
+    })   
 }
 
 interview(inscriptionKodemia)

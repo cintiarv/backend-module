@@ -16,6 +16,7 @@ const cinMakePurchases = {
     paidPantry: false,
     atHome: false
 }
+cl
 
 function gotToSuperMarket(personGoToSuper){ //ya no recibirá el callback ya que trabajaremos con promesas
     return new Promise((resolve, reject) => {
@@ -56,7 +57,7 @@ function payingThings(personToPay){
     })
 }
 
-    
+
 async function main(){
     const personAtSuper = await gotToSuperMarket(cinMakePurchases) //regresa una promesa
     console.log(`${personAtSuper.name} ya llegó al super`)
