@@ -2,34 +2,63 @@
 
 const fs = require('fs');
 
-let koders = ()=>{
-    fs.readFile('./koders.json', 'utf8', function (err, data){
-        err 
-        ? console.log(err) 
-        : console.log(JSON.parse(data).koders)
-        let kodersArray = JSON.parse(data).koders;
-        kodersArray.map((x)=>{
-            if(x.id == 2){
-                x.id = 55
-            }return 
-        })
-        let kodersIdModifyString = JSON.stringify(kodersArray) //convierte a string para poder ponerlo como parámetro en la función write
-        function write(){fs.writeFile('./koders.json', kodersIdModifyString, function(err){ 
-            if (err){
-                console.log(err);
-            }else{
-                console.log('El id de tu koder ha sido modificado')
-            }
-            });
-        }
-        write()
-    })
+function updateKoderById(idKoder, newData){ //a que koder voy a actualizaor y que nueva data va a recibir 
+    fs.promises.readFile('./koders.json', 'utf8') //este método ya me regresa la promesa, solo la tengo que manejar
+                    .then((data)=>{
+                        //aquí ya tengo la data del archivo
+                        console.log(data); //me regresa un string 
+                        const json = JSON.parse(data); //Convetir de str a objeto
+                        console.log(json);
+
+                        const koderFound = json.koders.find((koder) => koder.id === idKoder)
+                        console.log(koderFound);
+
+                        const koderUpdated = {...koderFound, ...newData} //del koder que encontraste añádele(se subescribe) la newData
+                        console.log('koderUpdated', koderUpdated);
+
+                        const newKodersToUpdate = json.koders.filter((koder) => koder.id !== idKoder)//reemplazaar el koder que esta en el arreglo por el nuevo koder
+                        console.log('koders sin rafa: ', koders);
+
+                        newKodersToUpdate.push(newKodersToUpdate)
+                        json.koders = newKodersToUpdate
+                        console.log('Koder actualizado');
+                        console.log(json.koders);
+
+                        fs.promises.writeFile('./koders.json', JSON.stringify(json, null, 2)) 
+                            .then (() => {
+                                console.log('Se actualizó el archivo');
+                            })
+                            .catch((err) => {
+                                console.log('Error: ', err);
+                            })
+
+                    })
+                    .catch((error)=>{
+                        console.log('Error: ', error);
+                    })
+
 }
 
-koders()
+const newDataRafa = {
+    name:'Rafael'
+}
 
+updateKoderById(2, newDataRafa)
 
+//buscar índice de ese koder encontrado y utilizar splice
 
+/* //spread operator
+const objeto = {
+    name:'cin',
+    ln:'ruiz'
+}
 
+const otherObject = {
+    age:26,
+    github:'cin'
+}
+const newObject={...objeto, ...otherObject} funciona siempre yc uando este dentro de llaves 
+console.log(newObject);
+ */
 
 
