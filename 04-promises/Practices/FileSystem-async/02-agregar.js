@@ -1,38 +1,29 @@
 //2-. función que permita agregar un koder al arreglo de koders y guardar el archivo con el cambio realizado
 
 const fs = require('fs');
-let koders = ()=>{
-    fs.readFile('./koders.json', 'utf8', function (err, data){
-        err 
-        ? console.log(err) 
-        : console.log(JSON.parse(data).koders)
-        let kodersArray = JSON.parse(data).koders;
-        console.log(kodersArray)
-        kodersArray.push(newKoder)
-        console.log(kodersArray)
-        let newArrayString = JSON.stringify(kodersArray)
-        function write(){fs.writeFile('./koders.json', newArrayString, function(err){ 
-            if (err){
-                console.log(err);
-            }else{
-                console.log('Tu koder se ha unido a tu json')
-            }
-            });
-        }
-        write()
-    })
-}
 
-koders()
+async function addKoder(file,newKoder){ 
+    const dataFile = await fs.promises.readFile(file, 'utf8') //este método ya me regresa la promesa, solo la tengo que manejar
+    let kodersArray = JSON.parse(dataFile).koders; //Convetir de str a objeto y entrar al array 'koders'
+    console.log(kodersArray);
+    
+    kodersArray.push(newKoder) //solo se puede dar push a un arreglo de objetos por eso tuvimos que acceder al arreglo koders antes de darle push 
+    console.log(kodersArray);
+    
+    await fs.promises.writeFile('./koders.json', JSON.stringify(kodersArray, null, 2)) //enre parent para darle formato 
+    
+}                       
+ 
 
 function createKoder(id, name, lastName, age){
-    let arreglo={
+    let array={
     id:name.length,
     name:name,
     lastName:lastName,
     age:age
 } 
-return arreglo 
+return array
 }
 
-let newKoder = createKoder(0,'Cin', 'Ruiz', 25)
+
+addKoder('./koders.json', createKoder(0,'Cin', 'Ruiz', 25))

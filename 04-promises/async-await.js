@@ -16,7 +16,7 @@ const cinMakePurchases = {
     paidPantry: false,
     atHome: false
 }
-cl
+
 
 function gotToSuperMarket(personGoToSuper){ //ya no recibirá el callback ya que trabajaremos con promesas
     return new Promise((resolve, reject) => {

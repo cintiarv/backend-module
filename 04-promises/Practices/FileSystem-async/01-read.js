@@ -2,15 +2,10 @@
 
 const fs = require('fs');
 
-let koders = ()=>{
-    fs.readFile('./koders.json', 'utf8', function (err, data){
-        err 
-        ? console.log(err) 
-        : console.log(JSON.parse(data).koders)
-    })
-}
-
-koders()
-
-
-
+async function readKoders(file){ //esta funciòn debe ser asìncrona ya que abajo utilizarè la promesa
+    const dataFile = await fs.promises.readFile(file, 'utf8') //este método ya me regresa la promesa, solo la tengo que manejar
+    const json = JSON.parse(dataFile); //Convetir de str a objeto
+    console.log(json);                 
+}                       
+ 
+ readKoders('./koders.json')

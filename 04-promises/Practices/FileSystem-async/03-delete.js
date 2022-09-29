@@ -2,28 +2,15 @@
 
 const fs = require('fs');
 
-let koders = (id)=>{
-    fs.readFile('./koders.json', 'utf8', function (err, data){
-        err 
-        ? console.log(err) 
-        : console.log(JSON.parse(data).koders)
-        let kodersArray = JSON.parse(data).koders;
-        let kodersFilter = kodersArray.filter((user)=>{ //me filtra a los koders que no tengan el id-> 2
-            return user.id !== id
-        })
-        let kodersFilterString = JSON.stringify(kodersFilter) //convierte a string para poder ponerlo como parámetro en la función write
-        function write(){fs.writeFile('./koders.json', kodersFilterString, function(err){ 
-            if (err){
-                console.log(err);
-            }else{
-                console.log('Tu koder se ha eliminado de tu json')
-            }
-            });
-        }
-        write()
-    })
+async function koders(file, id){
+    const dataFile = await fs.promises.readFile(file, 'utf8') //este método ya me regresa la promesa, solo la tengo que manejar
+    let kodersArray = JSON.parse(dataFile).koders;
+    let kodersFilter = kodersArray.filter((user)=> user.id !== id)
+
+    await fs.promises.writeFile('./koders.json', JSON.stringify(kodersFilter, null, 2)) //enre parent-> para darle formato 
+    console.log(`El koder con id ${id} ha sido elimiando de tu json`)
 }
 
-koders(2)
+koders('./koders.json', 2)
 
 
