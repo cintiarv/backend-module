@@ -87,7 +87,7 @@ const id = 1;
 
     const id = 3;
 
-    const getInfoUsuario = async() =>{
+    const getInfoUsuario = async() =>{ //se convierte en una func asícrona cuando le agregas el async
     try{ const empleado = await getEmpleado(id)
         const salario = await getSalario(id)
         return `El salario del empleado: ${empleado} es de: ${salario}`;  

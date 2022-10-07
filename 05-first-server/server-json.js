@@ -3,7 +3,6 @@ Crear servidor
 GET/koders{'message': "Aquí se obtendran los koders"}
 */
 
-
 const http = require ('http');
 
 const server = http.createServer((request, response) =>{ //recibirá un requestListener, se ejecutará cada vez que reciba una petición. 

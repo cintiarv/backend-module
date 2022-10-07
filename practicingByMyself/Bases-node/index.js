@@ -1,5 +1,7 @@
 
 const fs = require('fs');
+const {tabla} = require('./tabla.js')
+
 let salida = '';
 function tabla(base){
     for(let i = 1 ; i <= 10 ; i++){

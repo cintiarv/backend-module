@@ -14,6 +14,7 @@ let koders = ()=>{
             }return 
         })
         let kodersIdModifyString = JSON.stringify(kodersArray) //convierte a string para poder ponerlo como parámetro en la función write
+        
         function write(){fs.writeFile('./koders.json', kodersIdModifyString, function(err){ 
             if (err){
                 console.log(err);
